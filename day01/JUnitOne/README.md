@@ -15,7 +15,7 @@
 <tr>
 <td align="center">
 <br />
-<img src="https://avatars.githubusercontent.com/u/99678760?v=4" width="120" height="120" style="border-radius: 50%; object-fit: cover;">
+<img src="favicon.png" width="120" height="120" style="border-radius: 50%; object-fit: cover;">
 <h3>© 2026 Avinash Dhanuka</h3>
 <p>Master Guide: Unit Testing with JUnit 5</p>
 <p><em>Crafted with ❤️ for Test-Driven Development</em></p>
@@ -880,7 +880,7 @@ TestWatcher watcher = new TestWatcher() {
 **Execution Flow:**
 ```mermaid
 graph LR
-    A[@Test Executes] --> B{Result?}
+    A["@Test Executes"] --> B{Result?}
     B -->|Pass| C[testSuccessful called]
     B -->|Fail| D[testFailed called]
     B -->|Skip| E[testDisabled called]
@@ -1002,7 +1002,7 @@ graph TD
         B3[src/test/java/com/tyss/]
         B4[pom.xml or build.gradle]
         B5[application.properties]
-        B6[@SpringBootApplication]
+        B6["@SpringBootApplication"]
     end
     
     style A1 fill:#e3f2fd,stroke:#1976d2,color:#000
@@ -1399,10 +1399,10 @@ void testBlankStrings(String input) {
 **Execution Flow:**
 ```mermaid
 graph TD
-    A[@BeforeEach] --> B{Assertion Pass?}
-    B -->|Yes| C[@Test Executes]
+    A["@BeforeEach"] --> B{Assertion Pass?}
+    B -->|Yes| C["@Test Executes"]
     B -->|No| D[Test Marked as FAILED]
-    D --> E[@AfterEach Still Runs]
+    D --> E["@AfterEach Still Runs"]
     
     style A fill:#e3f2fd,stroke:#1976d2,color:#000
     style B fill:#fff9c4,stroke:#f57f17,color:#000
