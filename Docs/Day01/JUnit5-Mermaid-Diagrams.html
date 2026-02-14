@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JUnit 5 - Mermaid Diagrams</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        
+        .diagram-container {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .diagram-header {
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .diagram-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .diagram-context {
+            display: inline-block;
+            font-size: 1.3em;
+            color: #333;
+        }
+        
+        .mermaid {
+            text-align: center;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            margin-top: 40px;
+        }
+        
+        .print-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        
+        .print-button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .print-button {
+                display: none;
+            }
+            .diagram-container {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 JUnit 5 Testing Framework</h1>
+        <p>Mermaid Diagrams Collection</p>
+        <p style="font-size: 0.9em; margin-top: 10px;">© 2026 Avinash Dhanuka | <a href="https://github.com/Avinash-706" style="color: white;">GitHub</a></p>
+    </div>
+    
+    <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
+        <h2 style="margin-top: 0;">📖 About This Document</h2>
+        <p>This page contains all <strong>15</strong> Mermaid diagrams from the JUnit 5 Master Guide.</p>
+        <p><strong>How to use:</strong></p>
+        <ul>
+            <li>View diagrams directly in your browser</li>
+            <li>Click "Print/Save as PDF" to create a PDF version</li>
+            <li>Right-click on any diagram to save as image</li>
+            <li>Share this HTML file with others</li>
+        </ul>
+    </div>
+    
+
+    <div class="diagram-container">
+        <div class="diagram-header">
+            <span class="diagram-number">Diagram 1</span>
+            <span class="diagram-context">🏛️ JUnit 5 Architecture</span>
+        </div>
+        <div class="mermaid">
+graph TD
+    A[JUnit 5 Platform] --> B[JUnit Jupiter]
+    A --> C[JUnit Vintage]
+    A --> D[Third-Party Engines]
+    
+    B --> E[New Programming Model]
+    B --> F[Extension Model]
+    
+    C --> G[JUnit 3 & 4 Support]
+    
+    style A fill:#e1f5ff,stroke:#01579b,stroke-width:3px,color:#000
+    style B fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#000
+    style C fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style D fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    style E fill:#e8f5e9,stroke:#1b5e20,stroke-width:1px,color:#000
+    style F fill:#e8f5e9,stroke:#1b5e20,stroke-width:1px,color:#000
+    style G fill:#fffde7,stroke:#f57f17,stroke-width:1px,color:#000
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <div class="diagram-header">
+            <span class="diagram-number">Diagram 2</span>
+            <span class="diagram-context">📈 Testing Pyramid</span>
+        </div>
+        <div class="mermaid">
+graph TD
+    subgraph Testing_Pyramid
+        A[UI Tests - Slow, Expensive]
+        B[Integration Tests - Medium]
+        C[Unit Tests - Fast, Cheap]
+    end
+    
+    A --> B
+    B --> C
+    
+    style A fill:#ffcdd2,stroke:#c62828,stroke-width:2px,color:#000
+    style B fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style C fill:#c8e6c9,stroke:#2e7d32,stroke-width:3px,color:#000
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <div class="diagram-header">
+            <span class="diagram-number">Diagram 3</span>
+            <span class="diagram-context">🔄 Test-Driven Development (TDD) Cycle</span>
+        </div>
+        <div class="mermaid">
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffcdd2','primaryTextColor':'#000','primaryBorderColor':'#c62828','lineColor':'#666','secondaryColor':'#c8e6c9','tertiaryColor':'#fff9c4'}}}%%
+stateDiagram-v2
+    [*] --> WriteTest: Write Failing Test
+    WriteTest --> RunTest: Run Test (RED)
+    RunTest --> WriteCode: Write Minimal Code
+    WriteCode --> RunTest2: Run Test (GREEN)
+    RunTest2 --> Refactor: Refactor Code
+    Refactor --> [*]: Repeat
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <div class="diagram-header">
+            <span class="diagram-number">Diagram 4</span>
+            <span class="diagram-context">Main vs Test Separation</span>
+        </div>
+        <div class="mermaid">
+graph LR
+    subgraph Production_Code
+        A[src/main/com.tyss/Calculator.java]
+    end
+    
+    subgraph Test_Code
+        B[src/test/com/tyss/Calculator_Test.java]
+    end
+    
+    B -->|Tests| A
+    
+    style A fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#000
+    style B fill:#bbdefb,stroke:#1565c0,stroke-width:2px,color:#000
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <div class="diagram-header">
+            <span class="diagram-number">Diagram 5</span>
+            <span class="diagram-context">🔄 Test Execution Lifecycle</span>
+        </div>
+        <div class="mermaid">
+%%{init: {'theme':'base', 'themeVariables': { 'actorBkg':'#e3f2fd','actorBorder':'#1976d2','actorTextColor':'#000','signalColor':'#1976d2','signalTextColor':'#000','labelBoxBkgColor':'#fff9c4','labelBoxBorderColor':'#f57f17','labelTextColor':'#000'}}}%%
+sequenceDiagram
+    participant JVM
+    participant TestClass
+    participant TestMethod
+    
+    JVM->>TestClass: @BeforeAll (Once)
+    
+    loop For Each Test
+        JVM->>TestClass: @BeforeEach
+        JVM->>TestMethod: @Test
+        JVM->>TestClass: @AfterEach
+    end
+    
+    JVM->>TestClass: @AfterAll (Once)
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <div class="diagram-header">
+            <span class="diagram-number">Diagram 6</span>
+            <span class="diagram-context">🏗️ Internal Working of Assertions</span>
+        </div>
+        <div class="mermaid">
+graph TD
+    A[Test Method Calls assertEquals] --> B{Compare Values}
+    B -->|Match| C[Test PASSES ✅]
+    B -->|Mismatch| D[Throw AssertionFailedError]
+    D --> E[Test FAILS ❌]
+    E --> F[JUnit Reports Failure]
+    
+    style A fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    style B fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style C fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#000
+    style D fill:#ffccbc,stroke:#d84315,stroke-width:2px,color:#000
+    style E fill:#ffcdd2,stroke:#c62828,stroke-width:2px,color:#000
+    style F fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px,color:#000
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <div class="diagram-header">
+            <span class="diagram-number">Diagram 7</span>
+            <span class="diagram-context">🔍 Deep Dive: assertEquals vs assertSame</span>
+        </div>
+        <div class="mermaid">
+graph TD
+    subgraph assertEquals_Value_Comparison
+        A1[Object 1: value=10] 
+        A2[Object 2: value=10]
+        A1 -.->|Compares .equals| A2
+        A3[Result: PASS ✅]
+    end
+    
+    subgraph assertSame_Reference_Comparison
+        B1[Reference 1] --> B3[Object in Heap]
+        B2[Reference 2] --> B3
+        B4[Result: PASS ✅ Same Memory Address]
+    end
+    
+    style A1 fill:#e3f2fd,stroke:#1976d2,color:#000
+    style A2 fill:#e3f2fd,stroke:#1976d2,color:#000
+    style A3 fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style B1 fill:#fff9c4,stroke:#f57f17,color:#000
+    style B2 fill:#fff9c4,stroke:#f57f17,color:#000
+    style B3 fill:#f3e5f5,stroke:#6a1b9a,color:#000
+    style B4 fill:#c8e6c9,stroke:#2e7d32,color:#000
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <div class="diagram-header">
+            <span class="diagram-number">Diagram 8</span>
+            <span class="diagram-context">Diagram</span>
+        </div>
+        <div class="mermaid">
+graph LR
+    A["@CsvSource"] --> B[Parse CSV String]
+    B --> C[Test 1: a=2, b=3, exp=5]
+    B --> D[Test 2: a=0, b=0, exp=0]
+    B --> E[Test 3: a=-5, b=10, exp=5]
+    
+    C --> F[Run testAdd]
+    D --> F
+    E --> F
+    
+    style A fill:#e1bee7,stroke:#6a1b9a,stroke-width:2px,color:#000
+    style B fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style C fill:#bbdefb,stroke:#1565c0,stroke-width:2px,color:#000
+    style D fill:#bbdefb,stroke:#1565c0,stroke-width:2px,color:#000
+    style E fill:#bbdefb,stroke:#1565c0,stroke-width:2px,color:#000
+    style F fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#000
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <div class="diagram-header">
+            <span class="diagram-number">Diagram 9</span>
+            <span class="diagram-context">🏭 How JUnit Executes Tests (JVM Level)</span>
+        </div>
+        <div class="mermaid">
+%%{init: {'theme':'base', 'themeVariables': { 'actorBkg':'#e3f2fd','actorBorder':'#1976d2','actorTextColor':'#000','signalColor':'#1976d2','signalTextColor':'#000','labelBoxBkgColor':'#fff9c4','labelBoxBorderColor':'#f57f17','labelTextColor':'#000','loopTextColor':'#000'}}}%%
+sequenceDiagram
+    participant IDE as IDE/Maven
+    participant JUnit as JUnit Platform
+    participant Engine as Jupiter Engine
+    participant Test as Test Class
+    participant JVM as JVM
+    
+    IDE->>JUnit: Run Tests
+    JUnit->>Engine: Discover Tests
+    Engine->>Test: Scan @Test annotations
+    Test-->>Engine: Return test methods
+    
+    Engine->>JVM: Load Test Class
+    JVM->>Test: Execute @BeforeAll
+    
+    loop For Each Test Method
+        JVM->>Test: Create new instance
+        JVM->>Test: Execute @BeforeEach
+        JVM->>Test: Execute @Test method
+        Test->>JVM: Return result (Pass/Fail)
+        JVM->>Test: Execute @AfterEach
+    end
+    
+    JVM->>Test: Execute @AfterAll
+    Engine->>JUnit: Aggregate Results
+    JUnit->>IDE: Display Report
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <div class="diagram-header">
+            <span class="diagram-number">Diagram 10</span>
+            <span class="diagram-context">🧠 Memory Architecture During Testing</span>
+        </div>
+        <div class="mermaid">
+graph TD
+    subgraph Stack_Memory
+        S1[Test Method Frame]
+        S2[Local Variables]
+        S3[Method Parameters]
+    end
+    
+    subgraph Heap_Memory
+        H1[Calculator_Test Instance]
+        H2[Calculator Instance]
+        H3[Test Data Objects]
+    end
+    
+    subgraph Method_Area
+        M1[Calculator.class bytecode]
+        M2[Calculator_Test.class bytecode]
+        M3[JUnit Framework classes]
+    end
+    
+    S1 --> H1
+    H1 --> H2
+    S2 --> H3
+    
+    style S1 fill:#e3f2fd,stroke:#1976d2,color:#000
+    style S2 fill:#e3f2fd,stroke:#1976d2,color:#000
+    style S3 fill:#e3f2fd,stroke:#1976d2,color:#000
+    style H1 fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style H2 fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style H3 fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style M1 fill:#fff9c4,stroke:#f57f17,color:#000
+    style M2 fill:#fff9c4,stroke:#f57f17,color:#000
+    style M3 fill:#fff9c4,stroke:#f57f17,color:#000
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <div class="diagram-header">
+            <span class="diagram-number">Diagram 11</span>
+            <span class="diagram-context">Diagram</span>
+        </div>
+        <div class="mermaid">
+graph LR
+    A["@Test Executes"] --> B{Result?}
+    B -->|Pass| C[testSuccessful called]
+    B -->|Fail| D[testFailed called]
+    B -->|Skip| E[testDisabled called]
+    
+    C --> F[passed++]
+    D --> G[failed++]
+    E --> H[skipped++]
+    
+    style A fill:#e3f2fd,stroke:#1976d2,color:#000
+    style B fill:#f3e5f5,stroke:#6a1b9a,color:#000
+    style C fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style D fill:#ffcdd2,stroke:#c62828,color:#000
+    style E fill:#fff9c4,stroke:#f57f17,color:#000
+    style F fill:#a5d6a7,stroke:#2e7d32,color:#000
+    style G fill:#ef9a9a,stroke:#c62828,color:#000
+    style H fill:#fff59d,stroke:#f57f17,color:#000
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <div class="diagram-header">
+            <span class="diagram-number">Diagram 12</span>
+            <span class="diagram-context">📚 Learning Path Progression</span>
+        </div>
+        <div class="mermaid">
+graph TD
+    A[Basic @Test] --> B[Assertions]
+    B --> C[Lifecycle Hooks]
+    C --> D[Exception Testing]
+    D --> E[Parameterized Tests]
+    E --> F[Advanced Extensions]
+    
+    style A fill:#ffcdd2,stroke:#c62828,color:#000
+    style B fill:#fff9c4,stroke:#f57f17,color:#000
+    style C fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style D fill:#bbdefb,stroke:#1565c0,color:#000
+    style E fill:#e1bee7,stroke:#6a1b9a,color:#000
+    style F fill:#b2dfdb,stroke:#00695c,color:#000
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <div class="diagram-header">
+            <span class="diagram-number">Diagram 13</span>
+            <span class="diagram-context">🏗️ Architectural Comparison</span>
+        </div>
+        <div class="mermaid">
+graph TD
+    subgraph Plain_Java_JUnit_Project
+        A1[src/main/com.tyss/]
+        A2[src/test/com/tyss/]
+        A3[.iml file]
+        A4[Manual dependency management]
+    end
+    
+    subgraph Spring_Boot_Project
+        B1[src/main/java/com/tyss/]
+        B2[src/main/resources/]
+        B3[src/test/java/com/tyss/]
+        B4[pom.xml or build.gradle]
+        B5[application.properties]
+        B6["@SpringBootApplication"]
+    end
+    
+    style A1 fill:#e3f2fd,stroke:#1976d2,color:#000
+    style A2 fill:#e3f2fd,stroke:#1976d2,color:#000
+    style A3 fill:#e3f2fd,stroke:#1976d2,color:#000
+    style A4 fill:#e3f2fd,stroke:#1976d2,color:#000
+    style B1 fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style B2 fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style B3 fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style B4 fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style B5 fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style B6 fill:#c8e6c9,stroke:#2e7d32,color:#000
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <div class="diagram-header">
+            <span class="diagram-number">Diagram 14</span>
+            <span class="diagram-context">🔄 Migration Path</span>
+        </div>
+        <div class="mermaid">
+graph LR
+    A[Plain Java + JUnit] --> B[Add Maven/Gradle]
+    B --> C[Add Spring Boot Starter]
+    C --> D[Convert to @Component]
+    D --> E[Add @SpringBootTest]
+    E --> F[Full Spring Boot App]
+    
+    style A fill:#e3f2fd,stroke:#1976d2,color:#000
+    style B fill:#fff9c4,stroke:#f57f17,color:#000
+    style C fill:#f3e5f5,stroke:#6a1b9a,color:#000
+    style D fill:#ffccbc,stroke:#d84315,color:#000
+    style E fill:#b2dfdb,stroke:#00695c,color:#000
+    style F fill:#c8e6c9,stroke:#2e7d32,color:#000
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <div class="diagram-header">
+            <span class="diagram-number">Diagram 15</span>
+            <span class="diagram-context">Q11: What happens if an assertion fails in `@BeforeEach`?</span>
+        </div>
+        <div class="mermaid">
+graph TD
+    A["@BeforeEach"] --> B{Assertion Pass?}
+    B -->|Yes| C["@Test Executes"]
+    B -->|No| D[Test Marked as FAILED]
+    D --> E["@AfterEach Still Runs"]
+    
+    style A fill:#e3f2fd,stroke:#1976d2,color:#000
+    style B fill:#fff9c4,stroke:#f57f17,color:#000
+    style C fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style D fill:#ffcdd2,stroke:#c62828,color:#000
+    style E fill:#f3e5f5,stroke:#6a1b9a,color:#000
+        </div>
+    </div>
+
+    
+    <div class="footer">
+        <p><strong>Master Guide: JUnit 5 Testing Framework</strong></p>
+        <p>Created by Avinash Dhanuka | © 2026</p>
+        <p>GitHub: <a href="https://github.com/Avinash-706">https://github.com/Avinash-706</a></p>
+    </div>
+    
+    <button class="print-button" onclick="window.print()">🖨️ Print / Save as PDF</button>
+    
+    <script>
+        mermaid.initialize({{ 
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {{
+                primaryColor: '#e3f2fd',
+                primaryTextColor: '#000',
+                primaryBorderColor: '#1976d2',
+                lineColor: '#666',
+                secondaryColor: '#c8e6c9',
+                tertiaryColor: '#fff9c4'
+            }}
+        }});
+    </script>
+</body>
+</html>
