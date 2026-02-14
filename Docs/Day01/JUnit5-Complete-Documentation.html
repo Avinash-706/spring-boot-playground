@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Guide: JUnit 5 Testing Framework - Complete Documentation</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                padding: 20px;
+                font-size: 11pt;
+            }
+            
+            h1 {
+                page-break-before: always;
+                margin-top: 0;
+            }
+            
+            h1:first-of-type {
+                page-break-before: avoid;
+            }
+            
+            h2, h3 {
+                page-break-after: avoid;
+            }
+            
+            pre, table, .mermaid-container {
+                page-break-inside: avoid;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+        
+        /* Typography */
+        h1 {
+            color: #1976d2;
+            font-size: 2.5em;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #1976d2;
+        }
+        
+        h2 {
+            color: #2e7d32;
+            font-size: 2em;
+            margin: 35px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #c8e6c9;
+        }
+        
+        h3 {
+            color: #f57f17;
+            font-size: 1.5em;
+            margin: 25px 0 12px 0;
+        }
+        
+        h4 {
+            color: #6a1b9a;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+        }
+        
+        p {
+            margin: 12px 0;
+            text-align: justify;
+        }
+        
+        /* Links */
+        a {
+            color: #0563C1;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Code */
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            color: #c62828;
+        }
+        
+        pre {
+            background: #f5f5f5;
+            border-left: 4px solid #1976d2;
+            padding: 15px;
+            margin: 15px 0;
+            overflow-x: auto;
+            border-radius: 4px;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+            color: #333;
+            font-size: 0.85em;
+            line-height: 1.5;
+        }
+        
+        /* Lists */
+        ul, ol {
+            margin: 12px 0 12px 30px;
+        }
+        
+        li {
+            margin: 6px 0;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: #1976d2;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        /* Blockquotes */
+        blockquote {
+            background: #fff9c4;
+            border-left: 4px solid #f57f17;
+            padding: 15px 20px;
+            margin: 15px 0;
+            font-style: italic;
+        }
+        
+        /* Horizontal rules */
+        hr {
+            border: none;
+            border-top: 2px solid #e0e0e0;
+            margin: 30px 0;
+        }
+        
+        /* Mermaid diagrams */
+        .mermaid-container {
+            background: #fafafa;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            text-align: center;
+            overflow-x: auto;
+        }
+        
+        .mermaid {
+            display: inline-block;
+            min-width: 600px;
+            transform: scale(1.1);
+            transform-origin: center;
+            margin: 30px 0;
+        }
+        
+        /* Smaller diagrams for specific sections */
+        .mermaid-small {
+            transform: scale(0.95) !important;
+            min-width: 500px !important;
+        }
+        
+        .mermaid-horizontal {
+            transform: scale(0.85) !important;
+            min-width: 700px !important;
+        }
+        
+        @media print {
+            .mermaid {
+                transform: scale(1.0);
+                page-break-inside: avoid;
+            }
+            
+            .mermaid-small {
+                transform: scale(0.9) !important;
+            }
+            
+            .mermaid-horizontal {
+                transform: scale(0.8) !important;
+            }
+            
+            .mermaid-container {
+                page-break-inside: avoid;
+                padding: 20px;
+            }
+        }
+        
+        /* Title page */
+        .title-page {
+            text-align: center;
+            padding: 100px 0;
+            page-break-after: always;
+        }
+        
+        .title-page h1 {
+            font-size: 3em;
+            color: #1976d2;
+            border: none;
+            margin: 20px 0;
+        }
+        
+        .title-page .subtitle {
+            font-size: 1.5em;
+            color: #666;
+            margin: 20px 0;
+        }
+        
+        .title-page .author {
+            font-size: 1.2em;
+            margin: 30px 0;
+        }
+        
+        .title-page .date {
+            font-size: 1em;
+            color: #999;
+        }
+        
+        .title-page .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 30px auto;
+            border: 4px solid #1976d2;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* Print button */
+        .print-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1976d2;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        
+        .print-button:hover {
+            background: #1565c0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+        }
+        
+        @media print {
+            .print-button {
+                display: none;
+            }
+        }
+        
+        /* Strong and emphasis */
+        strong {
+            color: #1976d2;
+            font-weight: bold;
+        }
+        
+        em {
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Title Page -->
+    <div class="title-page">
+        <img src="favicon.png" alt="Avinash Dhanuka" class="avatar">
+        <h1>☕ Master Guide</h1>
+        <h1>JUnit 5 Testing Framework</h1>
+        <div class="subtitle">Complete Documentation with Diagrams</div>
+        <div class="author">
+            <strong>Author:</strong> Avinash Dhanuka<br>
+            <a href="https://github.com/Avinash-706">GitHub: Avinash-706</a>
+        </div>
+        <div class="date">© 2026 | All Rights Reserved</div>
+        <p style="margin-top: 40px; font-style: italic;">
+            Crafted with ❤️ for Test-Driven Development
+        </p>
+    </div>
+    
+    <!-- Main Content -->
+    <h1>☕ Master Guide: JUnit 5 Testing Framework</h1>
+
+<p><div align="center"></p>
+
+
+<p></div></p>
+
+
+
+<blockquote><strong>Learning Note:</strong> This guide provides a complete understanding of JUnit 5 testing framework, from basic assertions to advanced parameterized testing, with real-world examples and internal execution flow.</blockquote>
+
+<hr>
+
+<h2>📑 Table of Contents</h2>
+<ol><li><a href="#1-what-is-junit-the-foundation">What is JUnit? (The Foundation)</a></li><li><a href="#2-why-do-we-need-junit">Why Do We Need JUnit?</a></li><li><a href="#3-project-structure-deep-dive">Project Structure Deep Dive</a></li><li><a href="#4-junit-lifecycle--annotations">JUnit Lifecycle & Annotations</a></li><li><a href="#5-assertion-methods-the-core">Assertion Methods (The Core)</a></li><li><a href="#6-parameterized-testing-advanced">Parameterized Testing (Advanced)</a></li><li><a href="#7-internal-execution-flow">Internal Execution Flow</a></li><li><a href="#8-topics-covered-in-this-project">Topics Covered in This Project</a></li><li><a href="#9-spring-boot-vs-plain-java-structure">Spring Boot vs Plain Java Structure</a></li><li><a href="#10-top-interview-questions">Interview Questions</a></li></ol>
+
+<hr>
+
+
+<h2>1. WHAT IS JUNIT? (THE FOUNDATION)</h2>
+
+<h3>📌 Definition</h3>
+<p><strong>JUnit</strong> is an open-source <strong>Unit Testing Framework</strong> for Java. It is used to write and run repeatable automated tests to ensure that individual units of code (methods, classes) work as expected.</p>
+
+<h3>🏗️ Key Characteristics</h3>
+<ul><li><strong>Framework Type:</strong> Testing Framework (Not a library)</li><li><strong>Current Version:</strong> JUnit 5 (Jupiter) - Released in 2017</li><li><strong>Architecture:</strong> Modular (JUnit Platform + JUnit Jupiter + JUnit Vintage)</li><li><strong>Annotations-Based:</strong> Uses Java annotations like <code>@Test</code>, <code>@BeforeEach</code></li><li><strong>Assertion Library:</strong> Built-in assertion methods for validation</li></ul>
+
+<h3>📊 JUnit Evolution</h3>
+
+<table><thead><tr><th>Version</th><th>Year</th><th>Key Features</th></tr></thead><tbody><tr><td><strong>JUnit 3</strong></td><td>2000</td><td>Test classes extend <code>TestCase</code>, method names start with <code>test</code></td></tr><tr><td><strong>JUnit 4</strong></td><td>2006</td><td>Annotation-based (<code>@Test</code>), no need to extend classes</td></tr><tr><td><strong>JUnit 5</strong></td><td>2017</td><td>Modular architecture, Lambda support, Parameterized tests</td></tr></tbody></table>
+
+<h3>🏛️ JUnit 5 Architecture</h3>
+
+<div class="mermaid-container"><div class="mermaid">
+graph TD
+    A[JUnit 5 Platform] --> B[JUnit Jupiter]
+    A --> C[JUnit Vintage]
+    A --> D[Third-Party Engines]
+    
+    B --> E[New Programming Model]
+    B --> F[Extension Model]
+    
+    C --> G[JUnit 3 & 4 Support]
+    
+    style A fill:#e1f5ff,stroke:#01579b,stroke-width:3px,color:#000
+    style B fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#000
+    style C fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style D fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    style E fill:#e8f5e9,stroke:#1b5e20,stroke-width:1px,color:#000
+    style F fill:#e8f5e9,stroke:#1b5e20,stroke-width:1px,color:#000
+    style G fill:#fffde7,stroke:#f57f17,stroke-width:1px,color:#000
+</div></div>
+
+<p><strong>Components Explained:</strong></p>
+<ol><li><strong>JUnit Platform:</strong> Foundation for launching testing frameworks on the JVM</li><li><strong>JUnit Jupiter:</strong> New programming model and extension model for JUnit 5</li><li><strong>JUnit Vintage:</strong> Provides backward compatibility with JUnit 3 and 4</li></ol>
+
+<hr>
+
+
+<h2>2. WHY DO WE NEED JUNIT?</h2>
+
+<h3>🎯 The Problem Without Testing</h3>
+<p>Imagine you have a <code>Calculator</code> class with 10 methods. Every time you make a change:</p>
+<ul><li>❌ You manually test each method by running <code>main()</code></li><li>❌ You write <code>System.out.println()</code> statements everywhere</li><li>❌ You forget to test edge cases (divide by zero, negative numbers)</li><li>❌ When bugs appear in production, you don't know which method broke</li></ul>
+
+<h3>✅ The Solution: Automated Testing with JUnit</h3>
+<ol><li><strong>Automated Verification:</strong> Write tests once, run them thousands of times</li><li><strong>Regression Prevention:</strong> Ensure new code doesn't break existing functionality</li><li><strong>Documentation:</strong> Tests serve as living documentation of how code should behave</li><li><strong>Confidence:</strong> Refactor code fearlessly knowing tests will catch errors</li><li><strong>CI/CD Integration:</strong> Automated tests run in build pipelines before deployment</li></ol>
+
+<h3>📈 Testing Pyramid</h3>
+
+<div class="mermaid-container"><div class="mermaid">
+graph TD
+    subgraph Testing_Pyramid
+        A[UI Tests - Slow, Expensive]
+        B[Integration Tests - Medium]
+        C[Unit Tests - Fast, Cheap]
+    end
+    
+    A --> B
+    B --> C
+    
+    style A fill:#ffcdd2,stroke:#c62828,stroke-width:2px,color:#000
+    style B fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style C fill:#c8e6c9,stroke:#2e7d32,stroke-width:3px,color:#000
+</div></div>
+
+<p><strong>JUnit focuses on the base:</strong> Unit Tests (70% of all tests should be unit tests)</p>
+
+<h3>🔄 Test-Driven Development (TDD) Cycle</h3>
+
+<div class="mermaid-container"><div class="mermaid">
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffcdd2','primaryTextColor':'#000','primaryBorderColor':'#c62828','lineColor':'#666','secondaryColor':'#c8e6c9','tertiaryColor':'#fff9c4'}}}%%
+stateDiagram-v2
+    [*] --> WriteTest: Write Failing Test
+    WriteTest --> RunTest: Run Test (RED)
+    RunTest --> WriteCode: Write Minimal Code
+    WriteCode --> RunTest2: Run Test (GREEN)
+    RunTest2 --> Refactor: Refactor Code
+    Refactor --> [*]: Repeat
+</div></div>
+
+<hr>
+
+
+<h2>3. PROJECT STRUCTURE DEEP DIVE</h2>
+
+<blockquote><strong>📝 Documentation by:</strong> Avinash Dhanuka | <a href="https://github.com/Avinash-706">GitHub Profile</a></blockquote>
+
+<h3>📂 Complete Folder Hierarchy</h3>
+
+<pre><code class="language-text">JUnitOne/
+├── .idea/                          # IntelliJ IDEA configuration files
+├── out/                            # Compiled .class files (bytecode)
+├── src/
+│   ├── main/                       # Production code
+│   │   └── com.tyss/              # Package structure
+│   │       ├── Calculator.java
+│   │       └── StudentEligibilityService.java
+│   └── test/                       # Test code
+│       ├── com/tyss/              # Mirror package structure
+│       │   ├── Calculator_Test.java
+│       │   └── StudentServiceTest.java
+│       └── resources/             # Test resources
+│           └── calculator-data.csv
+├── .gitignore
+└── JUnitOne.iml                   # IntelliJ module file</code></pre>
+
+<h3>🏗️ Package Structure Explained</h3>
+
+<h4>Why <code>com.tyss</code>?</h4>
+<p>Java follows <strong>reverse domain naming convention</strong>:</p>
+<ul><li>If your company domain is <code>tyss.com</code></li><li>Package becomes <code>com.tyss</code></li><li>This ensures global uniqueness (no package name conflicts)</li></ul>
+
+<h4>Main vs Test Separation</h4>
+
+<div class="mermaid-container"><div class="mermaid">
+graph LR
+    subgraph Production_Code
+        A[src/main/com.tyss/Calculator.java]
+    end
+    
+    subgraph Test_Code
+        B[src/test/com/tyss/Calculator_Test.java]
+    end
+    
+    B -->|Tests| A
+    
+    style A fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#000
+    style B fill:#bbdefb,stroke:#1565c0,stroke-width:2px,color:#000
+</div></div>
+
+<p><strong>Critical Rule:</strong> Test classes must be in the <strong>same package</strong> as the class they test (but in the <code>test</code> folder)</p>
+
+<h3>📦 How Packages Work in Java</h3>
+
+<p><strong>Package Declaration (Line 1 of every file):</strong></p>
+<pre><code class="language-java">package com.tyss;  // This file belongs to com.tyss package</code></pre>
+
+<p><strong>What Happens Internally:</strong></p>
+<ol><li><strong>Compilation:</strong> <code>javac</code> creates folder structure matching package name</li><li><strong>Bytecode Location:</strong> <code>Calculator.class</code> is placed in <code>out/com/tyss/</code></li><li><strong>Import Resolution:</strong> JVM searches for classes using package path</li></ol>
+
+<p><strong>Example:</strong></p>
+<pre><code class="language-java">// File: Calculator.java
+package com.tyss;  // Declares package
+
+public class Calculator {
+    // Class code
+}</code></pre>
+
+<p>When compiled:</p>
+<pre><code class="language-text">out/
+└── com/
+    └── tyss/
+        └── Calculator.class  ← Bytecode stored here</code></pre>
+
+<hr>
+
+
+<h3>🔍 File-by-File Breakdown</h3>
+
+<h4>1. <strong>Calculator.java</strong> (Production Code)</h4>
+<p><strong>Location:</strong> <code>src/main/com.tyss/Calculator.java</code></p>
+
+<p><strong>Purpose:</strong> Business logic for arithmetic operations</p>
+
+<p><strong>Key Methods:</strong></p>
+<pre><code class="language-java">public static int add(int a, int b)      // Addition
+public static int divide(int a, int b)   // Division with exception handling
+public static boolean isEven(int a)      // Even number check</code></pre>
+
+<p><strong>Why Static?</strong> No need to create object instances for simple utility methods.</p>
+
+<hr>
+
+<h4>2. <strong>StudentEligibilityService.java</strong> (Production Code)</h4>
+<p><strong>Location:</strong> <code>src/main/com.tyss/StudentEligibilityService.java</code></p>
+
+<p><strong>Purpose:</strong> Business logic for student eligibility validation</p>
+
+<p><strong>Key Method:</strong></p>
+<pre><code class="language-java">public boolean isEligible(int age)  // Returns true if age &gt;= 18</code></pre>
+
+<p><strong>Exception Handling:</strong> Throws <code>IllegalArgumentException</code> for negative age</p>
+
+<hr>
+
+<h4>3. <strong>Calculator_Test.java</strong> (Test Code)</h4>
+<p><strong>Location:</strong> <code>src/test/com/tyss/Calculator_Test.java</code></p>
+
+<p><strong>Purpose:</strong> Comprehensive testing of Calculator class</p>
+
+<p><strong>Topics Covered:</strong></p>
+<ul><li>✅ Lifecycle annotations (<code>@BeforeAll</code>, <code>@AfterEach</code>)</li><li>✅ Basic assertions (<code>assertEquals</code>, <code>assertTrue</code>)</li><li>✅ Exception testing (<code>assertThrows</code>)</li><li>✅ Parameterized tests (9 different sources!)</li><li>✅ Test watchers (custom test result tracking)</li><li>✅ Repeated tests (<code>@RepeatedTest</code>)</li><li>✅ Disabled tests (<code>@Disabled</code>)</li></ul>
+
+<p><strong>Reference:</strong> See <a href="src/test/com/tyss/Calculator_Test.java#L21">Calculator_Test.java:21</a> for lifecycle implementation</p>
+
+<hr>
+
+<h4>4. <strong>StudentServiceTest.java</strong> (Test Code)</h4>
+<p><strong>Location:</strong> <code>src/test/com/tyss/StudentServiceTest.java</code></p>
+
+<p><strong>Purpose:</strong> Testing StudentEligibilityService</p>
+
+<p><strong>Topics Covered:</strong></p>
+<ul><li>✅ All basic assertions</li><li>✅ <code>assertAll()</code> for grouped assertions</li><li>✅ <code>fail()</code> method for manual test failure</li><li>✅ Object reference testing (<code>assertSame</code>, <code>assertNotSame</code>)</li></ul>
+
+<hr>
+
+<h4>5. <strong>calculator-data.csv</strong> (Test Resource)</h4>
+<p><strong>Location:</strong> <code>src/test/resources/calculator-data.csv</code></p>
+
+<p><strong>Purpose:</strong> External test data for <code>@CsvFileSource</code></p>
+
+<p><strong>Format:</strong></p>
+<pre><code class="language-csv">2,3,5      ← input1, input2, expected_output
+10,5,15
+20,4,24</code></pre>
+
+<p><strong>Why External Files?</strong></p>
+<ul><li>Separates test data from test logic</li><li>Easy to modify without changing code</li><li>Can be managed by non-developers (QA team)</li></ul>
+
+<hr>
+
+
+<h2>4. JUNIT LIFECYCLE & ANNOTATIONS</h2>
+
+<h3>📌 What are Annotations?</h3>
+<p>Annotations are <strong>metadata</strong> that provide information to the compiler and JVM about how to execute code.</p>
+
+<p><strong>Syntax:</strong> <code>@AnnotationName</code></p>
+
+<h3>🔄 Test Execution Lifecycle</h3>
+
+<div class="mermaid-container"><div class="mermaid">
+%%{init: {'theme':'base', 'themeVariables': { 'actorBkg':'#e3f2fd','actorBorder':'#1976d2','actorTextColor':'#000','signalColor':'#1976d2','signalTextColor':'#000','labelBoxBkgColor':'#fff9c4','labelBoxBorderColor':'#f57f17','labelTextColor':'#000'}}}%%
+sequenceDiagram
+    participant JVM
+    participant TestClass
+    participant TestMethod
+    
+    JVM->>TestClass: @BeforeAll (Once)
+    
+    loop For Each Test
+        JVM->>TestClass: @BeforeEach
+        JVM->>TestMethod: @Test
+        JVM->>TestClass: @AfterEach
+    end
+    
+    JVM->>TestClass: @AfterAll (Once)
+</div></div>
+
+<h3>📋 Core Lifecycle Annotations</h3>
+
+<table><thead><tr><th>Annotation</th><th>Execution</th><th>Method Type</th><th>Use Case</th></tr></thead><tbody><tr><td><strong>@BeforeAll</strong></td><td>Once before all tests</td><td><code>static</code></td><td>Database connection, load config</td></tr><tr><td><strong>@BeforeEach</strong></td><td>Before each test</td><td>Instance</td><td>Create fresh object instances</td></tr><tr><td><strong>@Test</strong></td><td>Test execution</td><td>Instance</td><td>Actual test logic</td></tr><tr><td><strong>@AfterEach</strong></td><td>After each test</td><td>Instance</td><td>Cleanup resources, reset state</td></tr><tr><td><strong>@AfterAll</strong></td><td>Once after all tests</td><td><code>static</code></td><td>Close connections, print summary</td></tr></tbody></table>
+
+<h3>🔍 Real Example from Calculator_Test.java</h3>
+
+<p><strong>Reference:</strong> <a href="src/test/com/tyss/Calculator_Test.java#L46">Calculator_Test.java:46</a></p>
+
+<pre><code class="language-java">@BeforeAll
+static void beforeAllTests() {
+    System.out.println("-- Start All Tests --");
+}
+
+@BeforeEach
+void setup() {
+    calc = new Calculator();  // Fresh instance for each test
+}
+
+@AfterEach
+void tearDown() {
+    calc = null;  // Cleanup
+}</code></pre>
+
+<p><strong>Why Fresh Instances?</strong> Ensures test isolation - one test's changes don't affect another.</p>
+
+<hr>
+
+<h3>🎯 Test Annotations</h3>
+
+<table><thead><tr><th>Annotation</th><th>Purpose</th><th>Example</th></tr></thead><tbody><tr><td><strong>@Test</strong></td><td>Marks method as test</td><td><code>@Test void testAdd() {}</code></td></tr><tr><td><strong>@DisplayName</strong></td><td>Custom test name</td><td><code>@DisplayName("Division Success Test")</code></td></tr><tr><td><strong>@Disabled</strong></td><td>Skip test execution</td><td><code>@Disabled @Test void skip() {}</code></td></tr><tr><td><strong>@RepeatedTest(n)</strong></td><td>Run test n times</td><td><code>@RepeatedTest(5)</code></td></tr></tbody></table>
+
+<p><strong>Reference:</strong> <a href="src/test/com/tyss/Calculator_Test.java#L217">Calculator_Test.java:217</a></p>
+
+<pre><code class="language-java">@RepeatedTest(2)
+void testRepeated() {
+    assertEquals(4, calc.add(2, 2));  // Runs twice
+}</code></pre>
+
+<hr>
+
+
+<h2>5. ASSERTION METHODS (THE CORE)</h2>
+
+<h3>📌 What is an Assertion?</h3>
+<p>An <strong>assertion</strong> is a statement that checks if a condition is true. If false, the test fails.</p>
+
+<p><strong>Syntax:</strong> <code>assertXxx(expected, actual, message)</code></p>
+
+<h3>🏗️ Internal Working of Assertions</h3>
+
+<div class="mermaid-container"><div class="mermaid">
+graph TD
+    A[Test Method Calls assertEquals] --> B{Compare Values}
+    B -->|Match| C[Test PASSES ✅]
+    B -->|Mismatch| D[Throw AssertionFailedError]
+    D --> E[Test FAILS ❌]
+    E --> F[JUnit Reports Failure]
+    
+    style A fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    style B fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style C fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#000
+    style D fill:#ffccbc,stroke:#d84315,stroke-width:2px,color:#000
+    style E fill:#ffcdd2,stroke:#c62828,stroke-width:2px,color:#000
+    style F fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px,color:#000
+</div></div>
+
+<h3>📊 Complete Assertion Methods Table</h3>
+
+<table><thead><tr><th>Method</th><th>Purpose</th><th>Example</th><th>Reference</th></tr></thead><tbody><tr><td><strong>assertEquals</strong></td><td>Check equality</td><td><code>assertEquals(5, calc.add(2,3))</code></td><td><a href="src/test/com/tyss/Calculator_Test.java#L163">Calculator_Test.java:163</a></td></tr><tr><td><strong>assertNotEquals</strong></td><td>Check inequality</td><td><code>assertNotEquals(10, calc.subtract(8,3))</code></td><td><a href="src/test/com/tyss/Calculator_Test.java#L168">Calculator_Test.java:168</a></td></tr><tr><td><strong>assertTrue</strong></td><td>Check boolean true</td><td><code>assertTrue(calc.isEven(4))</code></td><td><a href="src/test/com/tyss/Calculator_Test.java#L173">Calculator_Test.java:173</a></td></tr><tr><td><strong>assertFalse</strong></td><td>Check boolean false</td><td><code>assertFalse(calc.isEven(5))</code></td><td><a href="src/test/com/tyss/Calculator_Test.java#L178">Calculator_Test.java:178</a></td></tr><tr><td><strong>assertNull</strong></td><td>Check if null</td><td><code>assertNull(obj)</code></td><td><a href="src/test/com/tyss/Calculator_Test.java#L184">Calculator_Test.java:184</a></td></tr><tr><td><strong>assertNotNull</strong></td><td>Check if not null</td><td><code>assertNotNull(calc)</code></td><td><a href="src/test/com/tyss/Calculator_Test.java#L189">Calculator_Test.java:189</a></td></tr><tr><td><strong>assertSame</strong></td><td>Check same reference</td><td><code>assertSame(ref1, ref2)</code></td><td><a href="src/test/com/tyss/Calculator_Test.java#L195">Calculator_Test.java:195</a></td></tr><tr><td><strong>assertNotSame</strong></td><td>Check different reference</td><td><code>assertNotSame(new Calc(), new Calc())</code></td><td><a href="src/test/com/tyss/Calculator_Test.java#L202">Calculator_Test.java:202</a></td></tr><tr><td><strong>assertThrows</strong></td><td>Check exception thrown</td><td><code>assertThrows(ArithmeticException.class, ...)</code></td><td><a href="src/test/com/tyss/Calculator_Test.java#L208">Calculator_Test.java:208</a></td></tr><tr><td><strong>assertAll</strong></td><td>Group multiple assertions</td><td><code>assertAll(() -> ..., () -> ...)</code></td><td><a href="src/test/com/tyss/StudentServiceTest.java#L60">StudentServiceTest.java:60</a></td></tr><tr><td><strong>fail</strong></td><td>Manually fail test</td><td><code>fail("Should not reach here")</code></td><td><a href="src/test/com/tyss/StudentServiceTest.java#L74">StudentServiceTest.java:74</a></td></tr></tbody></table>
+
+<hr>
+
+<h3>🔍 Deep Dive: assertEquals vs assertSame</h3>
+
+<div class="mermaid-container"><div class="mermaid">
+graph TD
+    subgraph assertEquals_Value_Comparison
+        A1[Object 1: value=10] 
+        A2[Object 2: value=10]
+        A1 -.->|Compares .equals| A2
+        A3[Result: PASS ✅]
+    end
+    
+    subgraph assertSame_Reference_Comparison
+        B1[Reference 1] --> B3[Object in Heap]
+        B2[Reference 2] --> B3
+        B4[Result: PASS ✅ Same Memory Address]
+    end
+    
+    style A1 fill:#e3f2fd,stroke:#1976d2,color:#000
+    style A2 fill:#e3f2fd,stroke:#1976d2,color:#000
+    style A3 fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style B1 fill:#fff9c4,stroke:#f57f17,color:#000
+    style B2 fill:#fff9c4,stroke:#f57f17,color:#000
+    style B3 fill:#f3e5f5,stroke:#6a1b9a,color:#000
+    style B4 fill:#c8e6c9,stroke:#2e7d32,color:#000
+</div></div>
+
+<p><strong>Example:</strong></p>
+<pre><code class="language-java">Integer a = 100;
+Integer b = 100;
+assertEquals(a, b);    // ✅ PASS (values are equal)
+assertSame(a, b);      // ✅ PASS (Integer cache: same object)
+
+Integer x = 200;
+Integer y = 200;
+assertEquals(x, y);    // ✅ PASS (values are equal)
+assertSame(x, y);      // ❌ FAIL (different objects in heap)</code></pre>
+
+<hr>
+
+<h3>🎯 assertThrows: Exception Testing</h3>
+
+<p><strong>Why Important?</strong> Ensures your code handles errors correctly.</p>
+
+<p><strong>Reference:</strong> <a href="src/test/com/tyss/Calculator_Test.java#L208">Calculator_Test.java:208</a></p>
+
+<pre><code class="language-java">@Test
+void testAssertThrows() {
+    assertThrows(ArithmeticException.class, () -&gt; {
+        calc.divide(10, 0);  // Should throw exception
+    });
+}</code></pre>
+
+<p><strong>Internal Flow:</strong></p>
+<ol><li>JUnit executes the lambda <code>() -> calc.divide(10, 0)</code></li><li>If <code>ArithmeticException</code> is thrown → Test PASSES ✅</li><li>If no exception or different exception → Test FAILS ❌</li></ol>
+
+<hr>
+
+
+<h2>6. PARAMETERIZED TESTING (ADVANCED)</h2>
+
+<blockquote><strong>📝 Comprehensive Guide by:</strong> Avinash Dhanuka | © 2026</blockquote>
+
+<h3>📌 What is Parameterized Testing?</h3>
+<p>Running the <strong>same test logic</strong> with <strong>different input data</strong> without duplicating code.</p>
+
+<h3>🎯 The Problem Without Parameterization</h3>
+
+<pre><code class="language-java">// ❌ BAD: Repetitive code
+@Test void testAdd1() { assertEquals(5, calc.add(2, 3)); }
+@Test void testAdd2() { assertEquals(0, calc.add(0, 0)); }
+@Test void testAdd3() { assertEquals(5, calc.add(-5, 10)); }
+// ... 100 more tests? 😱</code></pre>
+
+<h3>✅ The Solution: @ParameterizedTest</h3>
+
+<pre><code class="language-java">// ✅ GOOD: One test, multiple data sets
+@ParameterizedTest
+@CsvSource({"2,3,5", "0,0,0", "-5,10,5"})
+void testAdd(int a, int b, int expected) {
+    assertEquals(expected, calc.add(a, b));
+}</code></pre>
+
+<hr>
+
+<h3>📊 All 9 Parameterized Sources Covered</h3>
+
+<table><thead><tr><th>Source</th><th>Use Case</th><th>Example</th><th>Reference</th></tr></thead><tbody><tr><td><strong>@CsvSource</strong></td><td>Multiple parameters inline</td><td><code>@CsvSource({"2,3,5"})</code></td><td><a href="src/test/com/tyss/Calculator_Test.java#L64">Calculator_Test.java:64</a></td></tr><tr><td><strong>@ValueSource</strong></td><td>Single parameter</td><td><code>@ValueSource(ints={2,4,6})</code></td><td><a href="src/test/com/tyss/Calculator_Test.java#L77">Calculator_Test.java:77</a></td></tr><tr><td><strong>@MethodSource</strong></td><td>Complex/dynamic data</td><td><code>@MethodSource("provideData")</code></td><td><a href="src/test/com/tyss/Calculator_Test.java#L105">Calculator_Test.java:105</a></td></tr><tr><td><strong>@CsvFileSource</strong></td><td>External CSV file</td><td><code>@CsvFileSource(resources="/data.csv")</code></td><td><a href="src/test/com/tyss/Calculator_Test.java#L113">Calculator_Test.java:113</a></td></tr><tr><td><strong>@NullSource</strong></td><td>Null values</td><td><code>@NullSource</code></td><td><a href="src/test/com/tyss/Calculator_Test.java#L120">Calculator_Test.java:120</a></td></tr><tr><td><strong>@EmptySource</strong></td><td>Empty strings/collections</td><td><code>@EmptySource</code></td><td><a href="src/test/com/tyss/Calculator_Test.java#L128">Calculator_Test.java:128</a></td></tr><tr><td><strong>@NullAndEmptySource</strong></td><td>Both null and empty</td><td><code>@NullAndEmptySource</code></td><td><a href="src/test/com/tyss/Calculator_Test.java#L136">Calculator_Test.java:136</a></td></tr><tr><td><strong>@EnumSource</strong></td><td>Enum values</td><td><code>@EnumSource(Operation.class)</code></td><td><a href="src/test/com/tyss/Calculator_Test.java#L149">Calculator_Test.java:149</a></td></tr></tbody></table>
+
+<hr>
+
+<h3>🔍 Deep Dive: Each Source Type</h3>
+
+<h4>1️⃣ @CsvSource (Comma-Separated Values)</h4>
+
+<p><strong>When to Use:</strong> Multiple parameters with expected output</p>
+
+<p><strong>Reference:</strong> <a href="src/test/com/tyss/Calculator_Test.java#L64">Calculator_Test.java:64</a></p>
+
+<pre><code class="language-java">@ParameterizedTest
+@CsvSource({
+    "2, 3, 5",      // Test case 1
+    "0, 0, 0",      // Test case 2
+    "-5, 10, 5"     // Test case 3
+})
+void testAdd(int a, int b, int expected) {
+    assertEquals(expected, calc.add(a, b));
+}</code></pre>
+
+<p><strong>Internal Execution:</strong></p>
+<div class="mermaid-container"><div class="mermaid">
+graph LR
+    A["@CsvSource"] --> B[Parse CSV String]
+    B --> C[Test 1: a=2, b=3, exp=5]
+    B --> D[Test 2: a=0, b=0, exp=0]
+    B --> E[Test 3: a=-5, b=10, exp=5]
+    
+    C --> F[Run testAdd]
+    D --> F
+    E --> F
+    
+    style A fill:#e1bee7,stroke:#6a1b9a,stroke-width:2px,color:#000
+    style B fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style C fill:#bbdefb,stroke:#1565c0,stroke-width:2px,color:#000
+    style D fill:#bbdefb,stroke:#1565c0,stroke-width:2px,color:#000
+    style E fill:#bbdefb,stroke:#1565c0,stroke-width:2px,color:#000
+    style F fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#000
+</div></div>
+
+<hr>
+
+<h4>2️⃣ @ValueSource (Single Parameter)</h4>
+
+<p><strong>When to Use:</strong> Testing with single input values</p>
+
+<p><strong>Reference:</strong> <a href="src/test/com/tyss/Calculator_Test.java#L77">Calculator_Test.java:77</a></p>
+
+<pre><code class="language-java">@ParameterizedTest
+@ValueSource(ints = {2, 4, 6, 8, 10})
+void testIsEven(int number) {
+    assertTrue(calc.isEven(number));
+}</code></pre>
+
+<p><strong>Supported Types:</strong> <code>ints</code>, <code>strings</code>, <code>doubles</code>, <code>longs</code>, <code>booleans</code>, <code>shorts</code>, <code>bytes</code>, <code>chars</code>, <code>floats</code>, <code>classes</code></p>
+
+<hr>
+
+<h4>3️⃣ @MethodSource (Dynamic Data)</h4>
+
+<p><strong>When to Use:</strong> Complex test data, reusable data sets</p>
+
+<p><strong>Reference:</strong> <a href="src/test/com/tyss/Calculator_Test.java#L93">Calculator_Test.java:93</a></p>
+
+<pre><code class="language-java">// Data provider method
+private static Stream&lt;Arguments&gt; provideDivisionTestCases() {
+    return Stream.of(
+        Arguments.of(20, 4, 5),
+        Arguments.of(10, 2, 5)
+    );
+}
+
+@ParameterizedTest
+@MethodSource("provideDivisionTestCases")
+void testDivide(int a, int b, int expected) {
+    assertEquals(expected, calc.divide(a, b));
+}</code></pre>
+
+<p><strong>Rules:</strong></p>
+<ul><li>Method must be <code>static</code></li><li>Must return <code>Stream<Arguments></code></li><li>Method name matches annotation value</li></ul>
+
+<hr>
+
+<h4>4️⃣ @CsvFileSource (External Data)</h4>
+
+<p><strong>When to Use:</strong> Large data sets, data managed by QA team</p>
+
+<p><strong>Reference:</strong> <a href="src/test/com/tyss/Calculator_Test.java#L113">Calculator_Test.java:113</a></p>
+
+<pre><code class="language-java">@ParameterizedTest
+@CsvFileSource(resources = "/resources/calculator-data.csv", numLinesToSkip = 0)
+void testAddUsingCsvFile(int a, int b, int expected) {
+    assertEquals(expected, calc.add(a, b));
+}</code></pre>
+
+<p><strong>CSV File Format:</strong> <a href="src/test/resources/calculator-data.csv">calculator-data.csv</a></p>
+<pre><code class="language-csv">2,3,5
+10,5,15
+20,4,24</code></pre>
+
+<p><strong>Advantages:</strong></p>
+<ul><li>✅ Separate test data from code</li><li>✅ Easy to add/modify test cases</li><li>✅ Can be version controlled separately</li></ul>
+
+<hr>
+
+<h4>5️⃣ @NullSource, @EmptySource, @NullAndEmptySource</h4>
+
+<p><strong>When to Use:</strong> Testing null/empty handling</p>
+
+<p><strong>Reference:</strong> <a href="src/test/com/tyss/Calculator_Test.java#L120">Calculator_Test.java:120</a></p>
+
+<pre><code class="language-java">@ParameterizedTest
+@NullSource
+void testNull(Integer value) {
+    assertNull(value);  // value will be null
+}
+
+@ParameterizedTest
+@EmptySource
+void testEmpty(String value) {
+    assertTrue(value.isEmpty());  // value will be ""
+}
+
+@ParameterizedTest
+@NullAndEmptySource
+void testBoth(String value) {
+    assertTrue(value == null || value.isEmpty());
+}</code></pre>
+
+<hr>
+
+<h4>6️⃣ @EnumSource (Enum Testing)</h4>
+
+<p><strong>When to Use:</strong> Testing all enum values</p>
+
+<p><strong>Reference:</strong> <a href="src/test/com/tyss/Calculator_Test.java#L149">Calculator_Test.java:149</a></p>
+
+<pre><code class="language-java">enum Operation { ADD, SUBTRACT, MULTIPLY, DIVIDE }
+
+@ParameterizedTest
+@EnumSource(Operation.class)
+void testEnum(Operation op) {
+    assertNotNull(op);  // Runs 4 times (one per enum)
+}</code></pre>
+
+<hr>
+
+
+<h2>7. INTERNAL EXECUTION FLOW</h2>
+
+<blockquote><strong>📝 Deep Dive by:</strong> Avinash Dhanuka | Understanding JVM Internals</blockquote>
+
+<h3>🏭 How JUnit Executes Tests (JVM Level)</h3>
+
+<div class="mermaid-container"><div class="mermaid mermaid-small">
+%%{init: {'theme':'base', 'themeVariables': { 'actorBkg':'#e3f2fd','actorBorder':'#1976d2','actorTextColor':'#000','signalColor':'#1976d2','signalTextColor':'#000','labelBoxBkgColor':'#fff9c4','labelBoxBorderColor':'#f57f17','labelTextColor':'#000','loopTextColor':'#000'}}}%%
+sequenceDiagram
+    participant IDE as IDE/Maven
+    participant JUnit as JUnit Platform
+    participant Engine as Jupiter Engine
+    participant Test as Test Class
+    participant JVM as JVM
+    
+    IDE->>JUnit: Run Tests
+    JUnit->>Engine: Discover Tests
+    Engine->>Test: Scan @Test annotations
+    Test-->>Engine: Return test methods
+    
+    Engine->>JVM: Load Test Class
+    JVM->>Test: Execute @BeforeAll
+    
+    loop For Each Test Method
+        JVM->>Test: Create new instance
+        JVM->>Test: Execute @BeforeEach
+        JVM->>Test: Execute @Test method
+        Test->>JVM: Return result (Pass/Fail)
+        JVM->>Test: Execute @AfterEach
+    end
+    
+    JVM->>Test: Execute @AfterAll
+    Engine->>JUnit: Aggregate Results
+    JUnit->>IDE: Display Report
+</div></div>
+
+<h3>🔍 Step-by-Step Execution</h3>
+
+<p><strong>Example Test:</strong> <code>Calculator_Test.testAdd()</code></p>
+
+<ol><li><strong>Class Loading:</strong></li></ol>
+<pre><code class="language-text">   JVM loads Calculator_Test.class into memory</code></pre>
+
+<ol><li><strong>Static Initialization:</strong></li></ol>
+<pre><code class="language-java">   static int passed = 0;  // Initialized once
+   @BeforeAll static void beforeAllTests() { ... }  // Runs once</code></pre>
+
+<ol><li><strong>Instance Creation (Per Test):</strong></li></ol>
+<pre><code class="language-java">   Calculator_Test testInstance = new Calculator_Test();  // Fresh instance</code></pre>
+
+<ol><li><strong>Setup:</strong></li></ol>
+<pre><code class="language-java">   @BeforeEach void setup() {
+       calc = new Calculator();  // New Calculator object
+   }</code></pre>
+
+<ol><li><strong>Test Execution:</strong></li></ol>
+<pre><code class="language-java">   @Test void testAdd() {
+       assertEquals(5, calc.add(2, 3));  // Assertion checked
+   }</code></pre>
+
+<ol><li><strong>Teardown:</strong></li></ol>
+<pre><code class="language-java">   @AfterEach void tearDown() {
+       calc = null;  // Cleanup
+   }</code></pre>
+
+<ol><li><strong>Final Cleanup:</strong></li></ol>
+<pre><code class="language-java">   @AfterAll static void afterAllTests() {
+       System.out.println("Tests: " + passed);  // Summary
+   }</code></pre>
+
+<hr>
+
+<h3>🧠 Memory Architecture During Testing</h3>
+
+<div class="mermaid-container"><div class="mermaid mermaid-horizontal">
+graph TD
+    subgraph Stack_Memory
+        S1[Test Method Frame]
+        S2[Local Variables]
+        S3[Method Parameters]
+    end
+    
+    subgraph Heap_Memory
+        H1[Calculator_Test Instance]
+        H2[Calculator Instance]
+        H3[Test Data Objects]
+    end
+    
+    subgraph Method_Area
+        M1[Calculator.class bytecode]
+        M2[Calculator_Test.class bytecode]
+        M3[JUnit Framework classes]
+    end
+    
+    S1 --> H1
+    H1 --> H2
+    S2 --> H3
+    
+    style S1 fill:#e3f2fd,stroke:#1976d2,color:#000
+    style S2 fill:#e3f2fd,stroke:#1976d2,color:#000
+    style S3 fill:#e3f2fd,stroke:#1976d2,color:#000
+    style H1 fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style H2 fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style H3 fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style M1 fill:#fff9c4,stroke:#f57f17,color:#000
+    style M2 fill:#fff9c4,stroke:#f57f17,color:#000
+    style M3 fill:#fff9c4,stroke:#f57f17,color:#000
+</div></div>
+
+<p><strong>Key Points:</strong></p>
+<ul><li>Each <code>@Test</code> method gets a <strong>new instance</strong> of the test class</li><li>Static variables (<code>passed</code>, <code>failed</code>) persist across all tests</li><li><code>@BeforeAll</code> and <code>@AfterAll</code> execute in <strong>static context</strong> (no instance)</li></ul>
+
+<hr>
+
+<h3>🎯 TestWatcher Extension (Advanced)</h3>
+
+<p><strong>Reference:</strong> <a href="src/test/com/tyss/Calculator_Test.java#L21">Calculator_Test.java:21</a></p>
+
+<pre><code class="language-java">@RegisterExtension
+TestWatcher watcher = new TestWatcher() {
+    @Override
+    public void testSuccessful(ExtensionContext context) {
+        passed++;  // Increment on success
+    }
+    
+    @Override
+    public void testFailed(ExtensionContext context, Throwable cause) {
+        failed++;  // Increment on failure
+    }
+};</code></pre>
+
+<p><strong>What is TestWatcher?</strong></p>
+<ul><li>An <strong>Extension</strong> that hooks into test lifecycle</li><li>Allows custom logic after each test completes</li><li>Used here to track pass/fail/skip counts</li></ul>
+
+<p><strong>Execution Flow:</strong></p>
+<div class="mermaid-container"><div class="mermaid">
+graph LR
+    A["@Test Executes"] --> B{Result?}
+    B -->|Pass| C[testSuccessful called]
+    B -->|Fail| D[testFailed called]
+    B -->|Skip| E[testDisabled called]
+    
+    C --> F[passed++]
+    D --> G[failed++]
+    E --> H[skipped++]
+    
+    style A fill:#e3f2fd,stroke:#1976d2,color:#000
+    style B fill:#f3e5f5,stroke:#6a1b9a,color:#000
+    style C fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style D fill:#ffcdd2,stroke:#c62828,color:#000
+    style E fill:#fff9c4,stroke:#f57f17,color:#000
+    style F fill:#a5d6a7,stroke:#2e7d32,color:#000
+    style G fill:#ef9a9a,stroke:#c62828,color:#000
+    style H fill:#fff59d,stroke:#f57f17,color:#000
+</div></div>
+
+<hr>
+
+
+<h2>8. TOPICS COVERED IN THIS PROJECT</h2>
+
+<h3>✅ Complete Checklist</h3>
+
+<h4>🎯 Core JUnit Concepts</h4>
+<ul><li>✅ <strong>Test Class Structure:</strong> Proper naming convention (<code>ClassName_Test</code>)</li><li>✅ <strong>Package Organization:</strong> Mirroring production code structure</li><li>✅ <strong>Lifecycle Annotations:</strong> <code>@BeforeAll</code>, <code>@BeforeEach</code>, <code>@AfterEach</code>, <code>@AfterAll</code></li><li>✅ <strong>Test Annotations:</strong> <code>@Test</code>, <code>@DisplayName</code>, <code>@Disabled</code>, <code>@RepeatedTest</code></li></ul>
+
+<h4>🔍 Assertion Methods (11 Types)</h4>
+<ul><li>✅ <code>assertEquals</code> - Value equality</li><li>✅ <code>assertNotEquals</code> - Value inequality</li><li>✅ <code>assertTrue</code> - Boolean true check</li><li>✅ <code>assertFalse</code> - Boolean false check</li><li>✅ <code>assertNull</code> - Null check</li><li>✅ <code>assertNotNull</code> - Not null check</li><li>✅ <code>assertSame</code> - Reference equality</li><li>✅ <code>assertNotSame</code> - Reference inequality</li><li>✅ <code>assertThrows</code> - Exception testing</li><li>✅ <code>assertAll</code> - Grouped assertions</li><li>✅ <code>fail</code> - Manual test failure</li></ul>
+
+<h4>🎲 Parameterized Testing (9 Sources)</h4>
+<ul><li>✅ <code>@CsvSource</code> - Inline CSV data</li><li>✅ <code>@ValueSource</code> - Single parameter arrays</li><li>✅ <code>@MethodSource</code> - Dynamic data from methods</li><li>✅ <code>@CsvFileSource</code> - External CSV files</li><li>✅ <code>@NullSource</code> - Null value testing</li><li>✅ <code>@EmptySource</code> - Empty value testing</li><li>✅ <code>@NullAndEmptySource</code> - Combined null/empty</li><li>✅ <code>@EnumSource</code> - Enum value testing</li></ul>
+
+<h4>🔧 Advanced Features</h4>
+<ul><li>✅ <strong>TestWatcher Extension:</strong> Custom test result tracking</li><li>✅ <strong>@RegisterExtension:</strong> Extension registration</li><li>✅ <strong>Exception Handling:</strong> Testing expected exceptions</li><li>✅ <strong>Test Resources:</strong> External data files</li><li>✅ <strong>Static vs Instance Methods:</strong> Understanding context</li></ul>
+
+<hr>
+
+<h3>📚 Learning Path Progression</h3>
+
+<div class="mermaid-container"><div class="mermaid">
+graph TD
+    A[Basic @Test] --> B[Assertions]
+    B --> C[Lifecycle Hooks]
+    C --> D[Exception Testing]
+    D --> E[Parameterized Tests]
+    E --> F[Advanced Extensions]
+    
+    style A fill:#ffcdd2,stroke:#c62828,color:#000
+    style B fill:#fff9c4,stroke:#f57f17,color:#000
+    style C fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style D fill:#bbdefb,stroke:#1565c0,color:#000
+    style E fill:#e1bee7,stroke:#6a1b9a,color:#000
+    style F fill:#b2dfdb,stroke:#00695c,color:#000
+</div></div>
+
+<p><strong>Beginner → Intermediate → Advanced</strong></p>
+
+<hr>
+
+<h3>🎓 Real-World Applications</h3>
+
+<table><thead><tr><th>Concept</th><th>Real-World Use Case</th></tr></thead><tbody><tr><td><strong>@CsvSource</strong></td><td>Testing payment calculations with different amounts</td></tr><tr><td><strong>@MethodSource</strong></td><td>Testing user authentication with various credentials</td></tr><tr><td><strong>@CsvFileSource</strong></td><td>Testing data import from Excel/CSV files</td></tr><tr><td><strong>assertThrows</strong></td><td>Validating API error responses</td></tr><tr><td><strong>@BeforeEach</strong></td><td>Setting up database connections before each test</td></tr><tr><td><strong>TestWatcher</strong></td><td>Generating custom test reports for stakeholders</td></tr><tr><td><strong>@RepeatedTest</strong></td><td>Stress testing concurrent operations</td></tr></tbody></table>
+
+<hr>
+
+
+<h2>9. SPRING BOOT VS PLAIN JAVA STRUCTURE</h2>
+
+<blockquote><strong>📝 Detailed Comparison by:</strong> Avinash Dhanuka | <a href="https://github.com/Avinash-706">Connect on GitHub</a></blockquote>
+
+<h3>🏗️ Architectural Comparison</h3>
+
+<div class="mermaid-container"><div class="mermaid mermaid-horizontal">
+graph TD
+    subgraph Plain_Java_JUnit_Project
+        A1[src/main/com.tyss/]
+        A2[src/test/com/tyss/]
+        A3[.iml file]
+        A4[Manual dependency management]
+    end
+    
+    subgraph Spring_Boot_Project
+        B1[src/main/java/com/tyss/]
+        B2[src/main/resources/]
+        B3[src/test/java/com/tyss/]
+        B4[pom.xml or build.gradle]
+        B5[application.properties]
+        B6["@SpringBootApplication"]
+    end
+    
+    style A1 fill:#e3f2fd,stroke:#1976d2,color:#000
+    style A2 fill:#e3f2fd,stroke:#1976d2,color:#000
+    style A3 fill:#e3f2fd,stroke:#1976d2,color:#000
+    style A4 fill:#e3f2fd,stroke:#1976d2,color:#000
+    style B1 fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style B2 fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style B3 fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style B4 fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style B5 fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style B6 fill:#c8e6c9,stroke:#2e7d32,color:#000
+</div></div>
+
+<hr>
+
+<h3>📊 Detailed Comparison Table</h3>
+
+<table><thead><tr><th>Aspect</th><th>Plain Java (This Project)</th><th>Spring Boot</th></tr></thead><tbody><tr><td><strong>Project Type</strong></td><td>Simple Java Application</td><td>Enterprise Web Application</td></tr><tr><td><strong>Build Tool</strong></td><td>None (IDE managed)</td><td>Maven/Gradle (pom.xml/build.gradle)</td></tr><tr><td><strong>Dependency Management</strong></td><td>Manual JAR files</td><td>Automatic via Maven Central</td></tr><tr><td><strong>Main Folder</strong></td><td><code>src/main/com.tyss/</code></td><td><code>src/main/java/com/company/</code></td></tr><tr><td><strong>Resources Folder</strong></td><td><code>src/test/resources/</code> only</td><td><code>src/main/resources/</code> + <code>src/test/resources/</code></td></tr><tr><td><strong>Configuration</strong></td><td>None</td><td><code>application.properties</code> or <code>application.yml</code></td></tr><tr><td><strong>Entry Point</strong></td><td><code>public static void main()</code></td><td><code>@SpringBootApplication</code> class</td></tr><tr><td><strong>Dependency Injection</strong></td><td>Manual object creation</td><td><code>@Autowired</code>, <code>@Component</code></td></tr><tr><td><strong>Testing</strong></td><td>JUnit 5 (Jupiter)</td><td>JUnit 5 + Spring Test (<code>@SpringBootTest</code>)</td></tr><tr><td><strong>Web Layer</strong></td><td>Not applicable</td><td>Controllers (<code>@RestController</code>)</td></tr><tr><td><strong>Database</strong></td><td>Not applicable</td><td>JPA, Hibernate (<code>@Entity</code>, <code>@Repository</code>)</td></tr><tr><td><strong>Packaging</strong></td><td><code>.jar</code> (plain)</td><td><code>.jar</code> (executable with embedded Tomcat)</td></tr></tbody></table>
+
+<hr>
+
+<h3>🔍 Folder Structure Comparison</h3>
+
+<h4>Plain Java (Current Project)</h4>
+<pre><code class="language-text">JUnitOne/
+├── src/
+│   ├── main/
+│   │   └── com.tyss/          ← Business logic only
+│   │       ├── Calculator.java
+│   │       └── StudentEligibilityService.java
+│   └── test/
+│       ├── com/tyss/          ← Test classes
+│       └── resources/         ← Test data files
+├── out/                       ← Compiled classes
+└── JUnitOne.iml              ← IntelliJ config</code></pre>
+
+<h4>Spring Boot Project</h4>
+<pre><code class="language-text">spring-boot-app/
+├── src/
+│   ├── main/
+│   │   ├── java/com/company/
+│   │   │   ├── SpringBootAppApplication.java  ← Entry point
+│   │   │   ├── controller/                    ← REST APIs
+│   │   │   │   └── UserController.java
+│   │   │   ├── service/                       ← Business logic
+│   │   │   │   └── UserService.java
+│   │   │   ├── repository/                    ← Database access
+│   │   │   │   └── UserRepository.java
+│   │   │   └── model/                         ← Data entities
+│   │   │       └── User.java
+│   │   └── resources/
+│   │       ├── application.properties         ← Configuration
+│   │       ├── static/                        ← CSS, JS files
+│   │       └── templates/                     ← HTML templates
+│   └── test/
+│       └── java/com/company/
+│           └── UserServiceTest.java
+├── target/                                    ← Build output
+├── pom.xml                                    ← Maven dependencies
+└── mvnw                                       ← Maven wrapper</code></pre>
+
+<hr>
+
+<h3>🎯 Key Differences Explained</h3>
+
+<h4>1. <strong>Dependency Management</strong></h4>
+
+<p><strong>Plain Java:</strong></p>
+<pre><code class="language-java">// Manual import of JUnit JAR
+import org.junit.jupiter.api.Test;</code></pre>
+<p>You must download <code>junit-jupiter-5.x.x.jar</code> and add to classpath manually.</p>
+
+<p><strong>Spring Boot (pom.xml):</strong></p>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+<p>Maven automatically downloads JUnit + Mockito + AssertJ + Spring Test.</p>
+
+<hr>
+
+<h4>2. <strong>Object Creation</strong></h4>
+
+<p><strong>Plain Java:</strong></p>
+<pre><code class="language-java">@BeforeEach
+void setup() {
+    calc = new Calculator();  // Manual instantiation
+}</code></pre>
+
+<p><strong>Spring Boot:</strong></p>
+<pre><code class="language-java">@Autowired
+private Calculator calc;  // Spring creates and injects automatically</code></pre>
+
+<hr>
+
+<h4>3. <strong>Testing Approach</strong></h4>
+
+<p><strong>Plain Java (Unit Test):</strong></p>
+<pre><code class="language-java">@Test
+void testAdd() {
+    Calculator calc = new Calculator();
+    assertEquals(5, calc.add(2, 3));  // Pure unit test
+}</code></pre>
+
+<p><strong>Spring Boot (Integration Test):</strong></p>
+<pre><code class="language-java">@SpringBootTest
+class UserServiceTest {
+    @Autowired
+    private UserService userService;  // Tests with real Spring context
+    
+    @Test
+    void testCreateUser() {
+        User user = userService.createUser("John");
+        assertNotNull(user.getId());  // Tests database interaction
+    }
+}</code></pre>
+
+<hr>
+
+<h4>4. <strong>Application Entry Point</strong></h4>
+
+<p><strong>Plain Java:</strong></p>
+<pre><code class="language-java">public class Calculator {
+    public static void main(String[] args) {
+        System.out.println("Hello");  // Simple console app
+    }
+}</code></pre>
+
+<p><strong>Spring Boot:</strong></p>
+<pre><code class="language-java">@SpringBootApplication
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);  // Starts web server
+    }
+}</code></pre>
+
+<hr>
+
+<h3>🌐 When to Use What?</h3>
+
+<table><thead><tr><th>Use Case</th><th>Choose</th></tr></thead><tbody><tr><td>Learning Java basics</td><td>Plain Java</td></tr><tr><td>Simple utility libraries</td><td>Plain Java</td></tr><tr><td>Command-line tools</td><td>Plain Java</td></tr><tr><td>REST APIs</td><td>Spring Boot</td></tr><tr><td>Microservices</td><td>Spring Boot</td></tr><tr><td>Database applications</td><td>Spring Boot</td></tr><tr><td>Enterprise applications</td><td>Spring Boot</td></tr></tbody></table>
+
+<hr>
+
+<h3>🔄 Migration Path</h3>
+
+<div class="mermaid-container"><div class="mermaid mermaid-horizontal">
+graph LR
+    A[Plain Java + JUnit] --> B[Add Maven/Gradle]
+    B --> C[Add Spring Boot Starter]
+    C --> D[Convert to @Component]
+    D --> E[Add @SpringBootTest]
+    E --> F[Full Spring Boot App]
+    
+    style A fill:#e3f2fd,stroke:#1976d2,color:#000
+    style B fill:#fff9c4,stroke:#f57f17,color:#000
+    style C fill:#f3e5f5,stroke:#6a1b9a,color:#000
+    style D fill:#ffccbc,stroke:#d84315,color:#000
+    style E fill:#b2dfdb,stroke:#00695c,color:#000
+    style F fill:#c8e6c9,stroke:#2e7d32,color:#000
+</div></div>
+
+<p><strong>Steps to Convert This Project to Spring Boot:</strong></p>
+<ol><li>Create <code>pom.xml</code> with Spring Boot dependencies</li><li>Move <code>com.tyss</code> to <code>src/main/java/com/tyss/</code></li><li>Add <code>@Component</code> to <code>Calculator</code> and <code>StudentEligibilityService</code></li><li>Create <code>@SpringBootApplication</code> main class</li><li>Change tests to use <code>@SpringBootTest</code> and <code>@Autowired</code></li></ol>
+
+<hr>
+
+
+<h2>10. TOP INTERVIEW QUESTIONS</h2>
+
+<blockquote><strong>📝 Curated by:</strong> Avinash Dhanuka | © 2026 | <a href="https://github.com/Avinash-706">GitHub</a></blockquote>
+
+<h3>🧠 JUnit Fundamentals</h3>
+
+<h4>Q1: What is the difference between JUnit 4 and JUnit 5?</h4>
+
+<table><thead><tr><th>Feature</th><th>JUnit 4</th><th>JUnit 5</th></tr></thead><tbody><tr><td><strong>Architecture</strong></td><td>Monolithic</td><td>Modular (Platform + Jupiter + Vintage)</td></tr><tr><td><strong>Annotations</strong></td><td><code>@Before</code>, <code>@After</code></td><td><code>@BeforeEach</code>, <code>@AfterEach</code></td></tr><tr><td><strong>Assertions</strong></td><td><code>org.junit.Assert</code></td><td><code>org.junit.jupiter.api.Assertions</code></td></tr><tr><td><strong>Test Instance</strong></td><td>One per class</td><td>One per method (default)</td></tr><tr><td><strong>Parameterized</strong></td><td><code>@RunWith(Parameterized.class)</code></td><td><code>@ParameterizedTest</code></td></tr><tr><td><strong>Lambda Support</strong></td><td>No</td><td>Yes (<code>assertThrows(() -> ...)</code>)</td></tr></tbody></table>
+
+<hr>
+
+<h4>Q2: Why does JUnit create a new instance for each test method?</h4>
+
+<p><strong>Answer:</strong> To ensure <strong>test isolation</strong>. If tests shared the same instance, one test could modify state that affects another test, causing unpredictable failures.</p>
+
+<p><strong>Example:</strong></p>
+<pre><code class="language-java">class MyTest {
+    int counter = 0;  // Instance variable
+    
+    @Test void test1() { counter++; }  // counter = 1
+    @Test void test2() { counter++; }  // counter = 1 (new instance!)
+}</code></pre>
+
+<p>Each test gets <code>counter = 0</code> because JUnit creates a fresh instance.</p>
+
+<hr>
+
+<h4>Q3: What is the difference between <code>assertEquals</code> and <code>assertSame</code>?</h4>
+
+<p><strong>Answer:</strong></p>
+<ul><li><strong>assertEquals:</strong> Compares <strong>values</strong> using <code>.equals()</code> method</li><li><strong>assertSame:</strong> Compares <strong>memory references</strong> using <code>==</code> operator</li></ul>
+
+<p><strong>Example:</strong></p>
+<pre><code class="language-java">String s1 = new String("hello");
+String s2 = new String("hello");
+
+assertEquals(s1, s2);   // ✅ PASS (values are equal)
+assertSame(s1, s2);     // ❌ FAIL (different objects in heap)</code></pre>
+
+<hr>
+
+<h4>Q4: When should you use <code>@BeforeAll</code> vs <code>@BeforeEach</code>?</h4>
+
+<table><thead><tr><th>Annotation</th><th>Use Case</th><th>Example</th></tr></thead><tbody><tr><td><strong>@BeforeAll</strong></td><td>Expensive setup (once)</td><td>Database connection, load config file</td></tr><tr><td><strong>@BeforeEach</strong></td><td>Fresh state (per test)</td><td>Create new object instances, reset variables</td></tr></tbody></table>
+
+<p><strong>Reference:</strong> <a href="src/test/com/tyss/Calculator_Test.java#L46">Calculator_Test.java:46</a></p>
+
+<hr>
+
+<h4>Q5: How do you test if a method throws an exception?</h4>
+
+<p><strong>Answer:</strong> Use <code>assertThrows()</code></p>
+
+<p><strong>Reference:</strong> <a href="src/test/com/tyss/Calculator_Test.java#L208">Calculator_Test.java:208</a></p>
+
+<pre><code class="language-java">@Test
+void testDivideByZero() {
+    assertThrows(ArithmeticException.class, () -&gt; {
+        calc.divide(10, 0);
+    });
+}</code></pre>
+
+<p><strong>Why Lambda?</strong> JUnit needs to execute the code and catch the exception. Lambda delays execution until JUnit is ready.</p>
+
+<hr>
+
+<h3>🎯 Parameterized Testing</h3>
+
+<h4>Q6: What is the advantage of <code>@MethodSource</code> over <code>@CsvSource</code>?</h4>
+
+<p><strong>Answer:</strong></p>
+
+<table><thead><tr><th>Feature</th><th>@CsvSource</th><th>@MethodSource</th></tr></thead><tbody><tr><td><strong>Data Type</strong></td><td>Strings only</td><td>Any Java object</td></tr><tr><td><strong>Complexity</strong></td><td>Simple values</td><td>Complex objects, lists</td></tr><tr><td><strong>Reusability</strong></td><td>No</td><td>Yes (method can be reused)</td></tr><tr><td><strong>Dynamic Data</strong></td><td>No</td><td>Yes (can read from DB/API)</td></tr></tbody></table>
+
+<p><strong>Example:</strong></p>
+<pre><code class="language-java">// @MethodSource can return complex objects
+private static Stream&lt;Arguments&gt; provideUsers() {
+    return Stream.of(
+        Arguments.of(new User("John", 25)),
+        Arguments.of(new User("Jane", 30))
+    );
+}</code></pre>
+
+<hr>
+
+<h4>Q7: How does <code>@CsvFileSource</code> find the CSV file?</h4>
+
+<p><strong>Answer:</strong> It looks in the <strong>classpath</strong> under <code>src/test/resources/</code></p>
+
+<p><strong>Reference:</strong> <a href="src/test/com/tyss/Calculator_Test.java#L113">Calculator_Test.java:113</a></p>
+
+<pre><code class="language-java">@CsvFileSource(resources = "/resources/calculator-data.csv")</code></pre>
+
+<p><strong>Path Resolution:</strong></p>
+<ol><li>JUnit looks in <code>src/test/resources/resources/calculator-data.csv</code></li><li>During build, files are copied to <code>out/test/resources/</code></li><li>JVM loads from classpath</li></ol>
+
+<hr>
+
+<h4>Q8: Can you use multiple parameterized sources on one test?</h4>
+
+<p><strong>Answer:</strong> No, but you can combine some:</p>
+
+<pre><code class="language-java">// ✅ VALID: Combines null and empty
+@ParameterizedTest
+@NullAndEmptySource
+@ValueSource(strings = {"  ", "\t", "\n"})
+void testBlankStrings(String input) {
+    assertTrue(input == null || input.trim().isEmpty());
+}</code></pre>
+
+<hr>
+
+<h3>🔧 Advanced Concepts</h3>
+
+<h4>Q9: What is a TestWatcher and when would you use it?</h4>
+
+<p><strong>Answer:</strong> A <strong>TestWatcher</strong> is a JUnit extension that hooks into test lifecycle events.</p>
+
+<p><strong>Use Cases:</strong></p>
+<ul><li>Custom logging</li><li>Screenshot capture on test failure (Selenium)</li><li>Performance metrics tracking</li><li>Custom reporting</li></ul>
+
+<p><strong>Reference:</strong> <a href="src/test/com/tyss/Calculator_Test.java#L21">Calculator_Test.java:21</a></p>
+
+<hr>
+
+<h4>Q10: Why are <code>@BeforeAll</code> and <code>@AfterAll</code> methods static?</h4>
+
+<p><strong>Answer:</strong> Because they run <strong>before any instance is created</strong>. JUnit needs to call them without instantiating the test class.</p>
+
+<p><strong>Memory Timeline:</strong></p>
+<pre><code class="language-text">1. Load Calculator_Test.class into Method Area
+2. Execute @BeforeAll (static context)
+3. Create instance #1 → run test1
+4. Create instance #2 → run test2
+5. Execute @AfterAll (static context)</code></pre>
+
+<hr>
+
+<h4>Q11: What happens if an assertion fails in <code>@BeforeEach</code>?</h4>
+
+<p><strong>Answer:</strong> The test is <strong>skipped</strong> and marked as <strong>failed</strong>. The <code>@Test</code> method never executes.</p>
+
+<p><strong>Execution Flow:</strong></p>
+<div class="mermaid-container"><div class="mermaid">
+graph TD
+    A["@BeforeEach"] --> B{Assertion Pass?}
+    B -->|Yes| C["@Test Executes"]
+    B -->|No| D[Test Marked as FAILED]
+    D --> E["@AfterEach Still Runs"]
+    
+    style A fill:#e3f2fd,stroke:#1976d2,color:#000
+    style B fill:#fff9c4,stroke:#f57f17,color:#000
+    style C fill:#c8e6c9,stroke:#2e7d32,color:#000
+    style D fill:#ffcdd2,stroke:#c62828,color:#000
+    style E fill:#f3e5f5,stroke:#6a1b9a,color:#000
+</div></div>
+
+<hr>
+
+<h4>Q12: How do you skip a test conditionally?</h4>
+
+<p><strong>Answer:</strong> Use <code>Assumptions.assumeTrue()</code></p>
+
+<pre><code class="language-java">@Test
+void testOnlyOnWindows() {
+    Assumptions.assumeTrue(System.getProperty("os.name").contains("Windows"));
+    // Test only runs on Windows
+}</code></pre>
+
+<p><strong>Difference from <code>@Disabled</code>:</strong></p>
+<ul><li><code>@Disabled</code>: Always skips</li><li><code>Assumptions</code>: Skips based on runtime condition</li></ul>
+
+<hr>
+
+<h3>🎓 Scenario-Based Questions</h3>
+
+<h4>Q13: You have 100 test methods. How do you run only tests related to "addition"?</h4>
+
+<p><strong>Answer:</strong> Use <code>@Tag</code> annotation</p>
+
+<pre><code class="language-java">@Test
+@Tag("addition")
+void testAdd() { ... }
+
+@Test
+@Tag("division")
+void testDivide() { ... }</code></pre>
+
+<p><strong>Run Command:</strong></p>
+<pre><code class="language-bash">mvn test -Dgroups="addition"</code></pre>
+
+<hr>
+
+<h4>Q14: How would you test a method that takes 10 seconds to execute?</h4>
+
+<p><strong>Answer:</strong> Use <code>@Timeout</code> annotation</p>
+
+<pre><code class="language-java">@Test
+@Timeout(value = 5, unit = TimeUnit.SECONDS)
+void testSlowMethod() {
+    slowService.process();  // Fails if takes &gt; 5 seconds
+}</code></pre>
+
+<hr>
+
+<h4>Q15: Your test passes locally but fails in CI/CD. What could be wrong?</h4>
+
+<p><strong>Possible Causes:</strong></p>
+<ol><li><strong>Environment Variables:</strong> Missing in CI</li><li><strong>File Paths:</strong> Absolute paths instead of relative</li><li><strong>Time Zones:</strong> Date/time assertions</li><li><strong>Test Order Dependency:</strong> Tests not isolated</li><li><strong>Resource Files:</strong> Not included in build</li></ol>
+
+<p><strong>Solution:</strong> Use <code>@TestInstance(Lifecycle.PER_CLASS)</code> to debug state issues.</p>
+
+<hr>
+
+<h3>💡 Best Practices</h3>
+
+<h4>Q16: What are the characteristics of a good unit test?</h4>
+
+<p><strong>FIRST Principles:</strong></p>
+<ul><li><strong>F</strong>ast: Runs in milliseconds</li><li><strong>I</strong>ndependent: No dependencies between tests</li><li><strong>R</strong>epeatable: Same result every time</li><li><strong>S</strong>elf-Validating: Pass/fail, no manual verification</li><li><strong>T</strong>imely: Written before or with production code (TDD)</li></ul>
+
+<hr>
+
+<h4>Q17: Should you test private methods?</h4>
+
+<p><strong>Answer:</strong> <strong>No.</strong> Test public methods only. Private methods are implementation details.</p>
+
+<p><strong>Reasoning:</strong></p>
+<ul><li>Private methods are tested indirectly through public methods</li><li>Testing private methods couples tests to implementation</li><li>Refactoring becomes difficult</li></ul>
+
+<p><strong>If you must test private methods:</strong></p>
+<pre><code class="language-java">// Use reflection (not recommended)
+Method method = Calculator.class.getDeclaredMethod("privateMethod");
+method.setAccessible(true);
+method.invoke(calc);</code></pre>
+
+<hr>
+
+<h3>🚀 Real-World Scenarios</h3>
+
+<h4>Q18: How do you test a REST API controller in Spring Boot?</h4>
+
+<p><strong>Answer:</strong> Use <code>@WebMvcTest</code> + <code>MockMvc</code></p>
+
+<pre><code class="language-java">@WebMvcTest(UserController.class)
+class UserControllerTest {
+    @Autowired
+    private MockMvc mockMvc;
+    
+    @Test
+    void testGetUser() throws Exception {
+        mockMvc.perform(get("/users/1"))
+               .andExpect(status().isOk())
+               .andExpect(jsonPath("$.name").value("John"));
+    }
+}</code></pre>
+
+<hr>
+
+<h4>Q19: How do you test database operations?</h4>
+
+<p><strong>Answer:</strong> Use <code>@DataJpaTest</code> with H2 in-memory database</p>
+
+<pre><code class="language-java">@DataJpaTest
+class UserRepositoryTest {
+    @Autowired
+    private UserRepository repository;
+    
+    @Test
+    void testSaveUser() {
+        User user = new User("John");
+        User saved = repository.save(user);
+        assertNotNull(saved.getId());
+    }
+}</code></pre>
+
+<hr>
+
+<h4>Q20: What is the difference between Unit Test and Integration Test?</h4>
+
+<table><thead><tr><th>Aspect</th><th>Unit Test</th><th>Integration Test</th></tr></thead><tbody><tr><td><strong>Scope</strong></td><td>Single method/class</td><td>Multiple components</td></tr><tr><td><strong>Dependencies</strong></td><td>Mocked</td><td>Real (database, APIs)</td></tr><tr><td><strong>Speed</strong></td><td>Fast (milliseconds)</td><td>Slow (seconds)</td></tr><tr><td><strong>Annotation</strong></td><td><code>@Test</code></td><td><code>@SpringBootTest</code></td></tr><tr><td><strong>Example</strong></td><td>Testing <code>Calculator.add()</code></td><td>Testing REST API → Service → Database</td></tr></tbody></table>
+
+<p><strong>This Project:</strong> Pure <strong>Unit Tests</strong> (no external dependencies)</p>
+
+<hr>
+
+<p><div align="center"></p>
+
+<h3>🎓 End of Master Guide</h3>
+
+<p><strong>Created with dedication by Avinash Dhanuka</strong></p>
+
+<p><a href="https://img.shields.io/badge/GitHub-Avinash--706-181717?style=for-the-badge&logo=github&logoColor=white">![GitHub</a>](https://github.com/Avinash-706)</p>
+<p><a href="https://img.shields.io/badge/Email-Contact_Me-EA4335?style=for-the-badge&logo=gmail&logoColor=white">![Email</a>](mailto:avunashdhanuka@gmail.com)</p>
+
+<p><strong>© 2026 Avinash Dhanuka | All Rights Reserved</strong></p>
+
+<p><em>This documentation is protected intellectual property. Unauthorized reproduction or distribution is prohibited.</em></p>
+
+<hr>
+
+<p><strong>Happy Testing! 🎉</strong></p>
+
+<p><em>"Write tests, not bugs!"</em> - Avinash Dhanuka</p>
+
+<p></div></p>
+
+
+    
+    <!-- Footer -->
+    <hr>
+    <div style="text-align: center; padding: 40px 0; color: #666;">
+        <p><strong>Master Guide: JUnit 5 Testing Framework</strong></p>
+        <p>Created by Avinash Dhanuka | © 2026</p>
+        <p>GitHub: <a href="https://github.com/Avinash-706">https://github.com/Avinash-706</a></p>
+        <p style="margin-top: 20px; font-style: italic;">
+            "Write tests, not bugs!" - Avinash Dhanuka
+        </p>
+    </div>
+    
+    <!-- Print Button -->
+    <button class="print-button no-print" onclick="window.print()">🖨️ Print / Save as PDF</button>
+    
+    <!-- Mermaid Configuration -->
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                primaryColor: '#e3f2fd',
+                primaryTextColor: '#000',
+                primaryBorderColor: '#1976d2',
+                lineColor: '#666',
+                secondaryColor: '#c8e6c9',
+                tertiaryColor: '#fff9c4',
+                fontSize: '14px'
+            },
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true,
+                curve: 'basis'
+            },
+            sequence: {
+                useMaxWidth: false
+            },
+            gantt: {
+                useMaxWidth: false
+            }
+        });
+    </script>
+</body>
+</html>
