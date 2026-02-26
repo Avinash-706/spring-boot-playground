@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="18d6d90b-d8c8-4595-ad52-22ea7d4cf0d2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../day10/BeanLifeCycle/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day10/BeanLifeCycle/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day10/BeanLifeCycle/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day10/BeanLifeCycle/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day10/BeanLifeCycle/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day10/BeanLifeCycle/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day10/BeanLifeCycle/src/test/java/org/example/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day10/CaseStudy/PaymentProcessing/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day10/CaseStudy/PaymentProcessing/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day10/CaseStudy/PaymentProcessing/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day10/CaseStudy/PaymentProcessing/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day10/CaseStudy/PaymentProcessing/src/main/java/org/example/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day10/CaseStudy/PaymentProcessing/src/test/java/org/example/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day10/LazyConfig/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day10/LazyConfig/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day10/LazyConfig/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day10/LazyConfig/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day10/LazyConfig/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day10/LazyConfig/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day10/LazyConfig/src/main/java/org/example/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day10/LazyConfig/src/test/java/org/example/AppTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="3A3la9SHpq3RZhb5COzvCprg1DL" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "Application.BeanScopeDemo.executor": "Run",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/SPRING-BOOT-Learning/day09/AnnotationBased",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.example" />
+      <recent name="" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="18d6d90b-d8c8-4595-ad52-22ea7d4cf0d2" name="Changes" comment="" />
+      <created>1771829200915</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1771829200915</updated>
+    </task>
+    <servers />
+  </component>
+</project>

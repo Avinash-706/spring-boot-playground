@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- bean definitions here -->
+
+    <!-- CASE 1 : -->
+    <!-- for constructor injection -->
+    <!-- <bean id = "msgSrv" class="org.example.services.MessageService">-->
+    <!--        <constructor-arg ref = "emlSrv"/>-->
+    <!-- </bean>-->
+
+    <!-- <bean id = "emlSrv" class = "org.example.services.EmailService"/>-->
+
+
+    <!--    for getter setters-->
+    <!--    <bean id = "msgSrv" scope="prototype"   class="org.example.services.MessageService">-->
+    <!--        <property ref = "emlSrv" name="EmailService"/>-->
+    <!--    </bean>-->
+
+    <!--    <bean id = "emlSrv" scope = "prototype" class = "org.example.services.EmailService"/>-->
+
+
+    <!-- CASE 2 : -->
+    <bean id = "msgSrv" class="org.example.services.MessageService">
+        <property ref = "emlSrv" name="EmailService"/>
+    </bean>
+    <bean id = "emlSrv" scope = "prototype" init-method="init" destroy-method="destroy" class = "org.example.services.EmailService"/>
+
+
+</beans>
