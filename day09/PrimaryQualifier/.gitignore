@@ -5,6 +5,7 @@ PRIMARY_QUALIFIER_EXPLAIN.mdtarget/
 .kotlin
 
 ### IntelliJ IDEA ###
+target
 *.iws
 *.iml
 *.ipr
