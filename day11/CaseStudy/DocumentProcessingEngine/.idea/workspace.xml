@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8d9bef43-14df-49d3-aa04-e59ef29d7fe3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../day10/BeanLifeCycle/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/BeanLifeCycle/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/BeanLifeCycle/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/BeanLifeCycle/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/BeanLifeCycle/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/BeanLifeCycle/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/BeanLifeCycle/src/test/java/org/example/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/CaseStudy/BankLoanApproval/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/CaseStudy/BankLoanApproval/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/CaseStudy/BankLoanApproval/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/CaseStudy/BankLoanApproval/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/CaseStudy/BankLoanApproval/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/CaseStudy/BankLoanApproval/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/CaseStudy/BankLoanApproval/src/main/java/org/example/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/CaseStudy/BankLoanApproval/src/test/java/org/example/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/CaseStudy/FoodDelivery/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/CaseStudy/FoodDelivery/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/CaseStudy/FoodDelivery/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/CaseStudy/FoodDelivery/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/CaseStudy/FoodDelivery/src/main/java/org/example/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/CaseStudy/FoodDelivery/src/test/java/org/example/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/CaseStudy/PaymentProcessing/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/CaseStudy/PaymentProcessing/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/CaseStudy/PaymentProcessing/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/CaseStudy/PaymentProcessing/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/CaseStudy/PaymentProcessing/src/main/java/org/example/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/CaseStudy/PaymentProcessing/src/test/java/org/example/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/LazyConfig/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/LazyConfig/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/LazyConfig/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/LazyConfig/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/LazyConfig/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/LazyConfig/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/LazyConfig/src/main/java/org/example/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day10/LazyConfig/src/test/java/org/example/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/AppTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="3A9gtTakwlZAQkpg1aEoh3KZiJo" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8d9bef43-14df-49d3-aa04-e59ef29d7fe3" name="Changes" comment="" />
+      <created>1772010416197</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1772010416197</updated>
+    </task>
+    <servers />
+  </component>
+</project>
