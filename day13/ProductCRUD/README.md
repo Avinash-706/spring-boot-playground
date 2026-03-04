@@ -16,7 +16,7 @@
 <tr>
 <td align="center">
 <br />
-<img src="../../day11/favicon.png" width="150" height="150" alt="Spring Boot CRUD">
+<img src=".\favicon.png" width="150" height="150" alt="Spring Boot CRUD">
 <h3>© 2026 Avinash Dhanuka</h3>
 <p>Master Guide: Spring Boot CRUD with Thymeleaf</p>
 <p><em>Crafted with ❤️ for Modern Web Development</em></p>
