@@ -1,0 +1,111 @@
+========================================
+COURSE MANAGEMENT SYSTEM - API ENDPOINTS
+========================================
+
+BASE URL: http://localhost:8080
+SWAGGER UI: http://localhost:8080/swagger-ui/index.html
+
+========================================
+USER MANAGEMENT APIs
+========================================
+
+1. Register User
+POST /api/auth/register
+Body:
+{
+  "fullName": "John Doe",
+  "email": "john@example.com",
+  "password": "password123",
+  "role": "STUDENT"
+}
+
+2. Login User
+POST /api/auth/login
+Body:
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+3. Get User by ID
+GET /api/users/{id}
+
+========================================
+COURSE MANAGEMENT APIs
+========================================
+
+4. Create Course
+POST /api/courses?instructorId=1
+Body:
+{
+  "title": "Spring Boot Basics",
+  "description": "Learn Spring Boot from scratch",
+  "price": 99.99,
+  "duration": "4 weeks",
+  "level": "Beginner"
+}
+
+5. Update Course
+PUT /api/courses/{id}
+Body:
+{
+  "title": "Advanced Spring Boot",
+  "description": "Master Spring Boot",
+  "price": 149.99,
+  "duration": "6 weeks",
+  "level": "Advanced"
+}
+
+6. Delete Course
+DELETE /api/courses/{id}
+
+7. Get All Courses (with pagination)
+GET /api/courses?page=0&size=10&sort=title
+
+8. Get Course by ID
+GET /api/courses/{id}
+
+========================================
+ENROLLMENT MANAGEMENT APIs
+========================================
+
+9. Enroll Student
+POST /api/enrollments
+Body:
+{
+  "courseId": 1,
+  "studentId": 2
+}
+
+10. Get Enrollments by Student ID
+GET /api/enrollments/student/{studentId}
+
+11. Get Enrollments by Course ID
+GET /api/enrollments/course/{courseId}
+
+========================================
+COURSE MATERIAL APIs
+========================================
+
+12. Upload Material
+POST /api/materials/upload
+Form Data:
+- title: "Lecture 1 Notes"
+- courseId: 1
+- file: [select file]
+
+13. Download Material
+GET /api/materials/{id}/download
+
+14. Get Materials by Course ID
+GET /api/materials/course/{courseId}
+
+========================================
+NOTES
+========================================
+- Role options: ADMIN, INSTRUCTOR, STUDENT
+- EnrollmentStatus: ACTIVE, COMPLETED, CANCELLED
+- Database: MySQL (localhost:3306/course_management_db)
+- Default credentials in application.properties: root/root
+- File upload directory: uploads/
+- Max file size: 10MB
